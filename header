@@ -1,0 +1,53 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philosophers.h                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ctifany <ctifany@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/22 14:45:01 by ctifany           #+#    #+#             */
+/*   Updated: 2022/01/24 16:03:59 by ctifany          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef PHILOSOPHERS_H
+# define PHILOSOPHERS_H
+
+# include <pthread.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <sys/time.h>
+# include <stdlib.h>
+
+typedef struct s_philo
+{
+	pthread_t		thread;
+	int				num; //philo_num
+	int				meal; //eat_times
+	int				l_fork; //left_fork
+	int				r_fork; //right_fork
+	unsigned long	last_meal_time; //last_eat_time
+	struct s_game	*game;
+}				t_philo;
+
+typedef struct s_game
+{
+    int				philo_num;	//num_of_philos;
+	int				die; 		//time_to_die
+	int				eat;		//time_to_eat
+	int				sleep;		//time_to_sleep
+	int				time_to_eat;//num_of_times_to_eat
+    unsigned long	time_start;	//start_time
+    pthread_mutex_t	*fork;
+    t_philo			*philo;
+    int				dead;
+	int				full_philos;	
+}				t_game;
+
+#endif
+
+//take 1
+//eat 2
+//sleep 3
+//thinking 4
+//dead 0
